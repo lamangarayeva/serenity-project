@@ -117,7 +117,6 @@ public class SpartanEditorPostTest extends SpartanNewBase {
         // check location header ends with newly generated id
         String id = lastResponse().jsonPath().getString("data.id");
         Ensure.that("Check location header ends with newly generated id", validatableResponse -> validatableResponse.header("Location", endsWith(id)));
-
     }
 
 
