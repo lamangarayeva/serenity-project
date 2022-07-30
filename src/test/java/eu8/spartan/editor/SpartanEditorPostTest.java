@@ -35,7 +35,8 @@ public class SpartanEditorPostTest extends SpartanNewBase {
                 .accept(ContentType.JSON)
                 .contentType(ContentType.JSON)
                 .body(requestMap).log().all()
-                .when().post("/spartans").prettyPrint();
+        .when()
+                .post("/spartans").prettyPrint();
     }
 
 
