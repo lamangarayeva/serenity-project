@@ -2,7 +2,6 @@ package eu8.spartan.admin;
 
 import io.restassured.http.ContentType;
 import net.serenitybdd.junit5.SerenityTest;
-import net.serenitybdd.rest.SerenityRest;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 
