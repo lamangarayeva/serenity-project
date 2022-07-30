@@ -37,6 +37,32 @@ public class SpartanEditorPostTest extends SpartanNewBase {
                 .body(requestMap).log().all()
         .when()
                 .post("/spartans").prettyPrint();
+
+
+        // status code is 201
+        Ensure.that("Status code is 201", validatableResponse -> validatableResponse.statusCode(201));
+
+        // content type is Json
+        Ensure.that("Content-Type is JSON", validatableResponse -> validatableResponse.contentType(ContentType.JSON));
+
+        // success message is A Spartan is Born!
+        Ensure.that("Success message is A Spartan is Born!", validatableResponse -> validatableResponse.body("success", is("A Spartan is Born!")));
+
+        // id is not null
+        Ensure.that("ID is not null", validatableResponse -> validatableResponse.body("data.id", notNullValue()));
+
+        // name is correct
+        Ensure.that("Name is correct", validatableResponse -> validatableResponse.body("data.name", is(requestMap.get("name"))));
+
+        // gender is correct
+        Ensure.that("Gender is correct", validatableResponse -> validatableResponse.body("data.gender", is(requestMap.get("gender"))));
+
+        // phone is correct
+        Ensure.that("Phone is correct", validatableResponse -> validatableResponse.body("data.phone", is(requestMap.get("phone"))));
+
+        // check location header ends with newly generated id
+        String id = lastResponse().jsonPath().getString("data.id");
+        Ensure.that("Check location header ends with newly generated id", validatableResponse -> validatableResponse.header("Location", endsWith(id)));
     }
 
 
